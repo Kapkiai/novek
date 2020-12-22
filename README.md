@@ -4,7 +4,7 @@ Implements python socket *(client)*
 
 **Main program is in the py folder, i.e py/challenge.py**
 
-The C folder isn't complete. I opted to do the task with python.
+The C folder isn't complete, I'll complete later. I opted to do the task with python.
 
 ## How the program works
 Connects to a server
