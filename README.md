@@ -2,7 +2,7 @@
 Implements python socket *(client)*
 #### Requires Python3, 
 
-**Main program is in the py folder, i.e py/challenge.py**
+**Main program is in the py folder,i.e py/challenge.py**
 
 The C project isn't complete, I'll take time to do it later. I opted to do the task with python.
 
