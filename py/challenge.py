@@ -33,7 +33,7 @@ def secretmsg():
                     bytes.fromhex(full_msg.splitlines()[-2])).decode('utf-8')
                 print("Decompressed Message: ", decomMsg)
                 # send the decompressed string to the server for validation and apppend the carriage return
-                # so that the server can process it
+                # so that the server can take the input
                 s.sendall(bytes("{}{}".format(decomMsg, '\n'), 'utf-8'))
                 # receiving the secret messgae from the server
                 decodedMessage = s.recv(1024).decode('utf-8')
