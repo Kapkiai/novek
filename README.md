@@ -1,5 +1,6 @@
 # Nove Internship sockets challenge using python
 Implements python socket *(client)*
+#### Requires Python3, 
 
 **Main program is in the py folder, i.e py/client.py**
 
