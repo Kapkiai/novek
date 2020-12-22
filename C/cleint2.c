@@ -51,8 +51,19 @@ int SocketReceive(int hSocket,char* Rsp,short RvcSize)
         printf("Time Out\n");
         return -1;
     }
-    shortRetval = recv(hSocket, Rsp, RvcSize, 0);
-    printf("Response %s\n",Rsp);
+    int b = 1;
+    while(b==1){
+        shortRetval = recv(hSocket, Rsp, RvcSize, 0);
+        if (shortRetval == 334)
+        {
+            b = 0;
+            printf("Mathew %d\n", shortRetval);
+        }
+    }
+    
+    // printf("Response %s\n",Rsp);
+    // shortRetval = recv(hSocket, Rsp, RvcSize, 0);
+    // printf("Response %s\n",Rsp);
     return shortRetval;
 }
 //main driver program
@@ -61,7 +72,7 @@ int main(int argc, char *argv[])
     int hSocket, read_size;
     struct sockaddr_in server;
     char SendToServer[100] = {0};
-    char server_reply[200] = {0};
+    char server_reply[400] = {0};
     //Create socket
     hSocket = SocketCreate();
     if(hSocket == -1)
@@ -82,8 +93,14 @@ int main(int argc, char *argv[])
     //Send data to the server
     //SocketSend(hSocket, SendToServer, strlen(SendToServer));
     //Received the data from the server
-    read_size = SocketReceive(hSocket, server_reply, 200);
+    read_size = SocketReceive(hSocket, server_reply, 400);
+    printf("%d\n", read_size);
     printf("Server Response : %s\n\n",server_reply);
+    char *buff = server_reply;
+    char subbuff[200];
+    memcpy( subbuff, &buff[146], 185 );
+    subbuff[180] = '\0';
+    printf("%s\n", subbuff );
     close(hSocket);
     shutdown(hSocket,0);
     shutdown(hSocket,1);

@@ -1,4 +1,0 @@
-import gzip
-
-g = gzip.decompress(bytes.fromhex('1f8b0800d7f1e05f02ff55cac10980400c04c056b602abb18153721a249b2309dabe873fbfc3aca760932c0c89ee618dbb406d84df62c282266a9e8ac6d452277ab87d46e7e371290f64b59ac93fffe1f202fcefa41e62000000')).decode('utf-8')
-print(g)
