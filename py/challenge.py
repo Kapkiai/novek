@@ -2,7 +2,17 @@ import socket
 import gzip
 
 
-def secretmsg():
+def unzip(data):
+    # This function takes in hex encoded string, decodes it and unzips it to get
+    # a string
+    # hex decoding
+    val = bytes.fromhex(data)
+    # unziping
+    unzippedVal = gzip.decompress(val).decode('utf-8')
+    return unzippedVal
+
+
+def main():
     # Create a socket
     # socket.AF_INET - address family, IPv4
     # socket.SOCK_STREAM - TCP, conection-based
@@ -26,12 +36,11 @@ def secretmsg():
                 # I then used the python string operation (splitlines() method) to create a list
                 # of string with list boundery being lines. I then accessed the hex encoded string
                 # at the -2 position
-                print("Hex Encoded Compressed String: ",
-                      full_msg.splitlines()[-2])
-                # I hex decoded the encoded string to utf-8
-                decomMsg = gzip.decompress(
-                    bytes.fromhex(full_msg.splitlines()[-2])).decode('utf-8')
-                print("Decompressed Message: ", decomMsg)
+                hexString = full_msg.splitlines()[-2]
+                print("Hex Encoded Compressed String: ", hexString)
+                # variable to store the decompressed string
+                decomMsg = unzip(hexString)
+                print("Decompressed String: ", decomMsg)
                 # send the decompressed string to the server for validation and apppend the carriage return
                 # so that the server can take the input
                 s.sendall(bytes("{}{}".format(decomMsg, '\n'), 'utf-8'))
@@ -46,5 +55,5 @@ def secretmsg():
         break
 
 
-# calling our function
-secretmsg()
+if __name__ == '__main__':
+    main()
